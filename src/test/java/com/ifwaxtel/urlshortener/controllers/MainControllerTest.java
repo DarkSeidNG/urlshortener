@@ -44,15 +44,20 @@ public class MainControllerTest {
     @Test
     public void testStatisticsEndpoint() throws Exception {
 
+        // Clear all saved urlData
         urlDataRepository.deleteAll();
 
+        // Create a new Url data object
         UrlData urlData = new UrlData();
         urlData.setDateCreated(new Date().getTime());
         urlData.setOriginalUrl("http://github.com/darkseidng");
         urlData.setShortenedUrlKey(UrlHelper.generateRandomUrlKey(5));
 
+        // Save the newly created url data object
         urlDataRepository.save(urlData);
 
+        // Test to see if the returned json contains the original url and shortened url from the newly created
+        // urlData object and the total number of added UrlData objects
         mvc.perform(get("/api/gatherStatistics")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -71,6 +76,8 @@ public class MainControllerTest {
     @Test
     public void testShortenUrlEndpoint() throws Exception {
 
+        // Test to see if the returned json contains the original url and shortened url from the newly created
+        // urlData object.
         mvc.perform(post("/api/shortenUrl")
                 .param("url", "http://github.com/darkseidng")
                 .contentType(MediaType.APPLICATION_JSON))

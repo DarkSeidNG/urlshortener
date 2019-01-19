@@ -15,6 +15,7 @@ public class UrlHelper {
 
     /**
      * Build redirect view redirect view.
+     * This class builds a RedirectView which is used to redirect the user to the url specified
      *
      * @param url the url
      * @return the redirect view
@@ -27,6 +28,8 @@ public class UrlHelper {
 
     /**
      * Generate random url key string.
+     * This method generates a random string of characters from an alphanumeric string stoored in
+     * the GlobalConstants object
      *
      * @param count the count
      * @return the string
@@ -45,6 +48,7 @@ public class UrlHelper {
 
     /**
      * Get base url string.
+     * This method retrieves the base url of our request from the HttpServletRequest and returns the base url string
      *
      * @return the string
      */
@@ -57,7 +61,7 @@ public class UrlHelper {
         baseUrl = "http://" + currentRequest.getLocalAddr();
 
         if (currentRequest.getLocalPort() != 80){
-            baseUrl += ":" + currentRequest.getLocalPort();
+            baseUrl += ":" + currentRequest.getLocalPort(); // append the port if it is not port 80
         }
 
         if (!StringUtils.isEmpty(currentRequest.getContextPath())) {

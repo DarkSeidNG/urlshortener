@@ -37,10 +37,10 @@ public class RedirectController {
     public @ResponseBody
     RedirectView redirectUrl(@PathVariable("urlKey") String urlKey)
     {
-        if (urlKey != null) {
+        if (urlKey != null) { // checks if the urlkey entered is null
             UrlData urlData = urlDataRepository.findFirstByShortenedUrlKey(urlKey);
-            if (urlData != null) {
-                if (urlData.getOriginalUrl() != null){
+            if (urlData != null) { // checks to see if the persistence layer returned any data for the specified urlKey
+                if (urlData.getOriginalUrl() != null){ // check if the original_url returned is empty
                     return UrlHelper.buildRedirectView(urlData.getOriginalUrl());
                 }
             }
@@ -51,6 +51,7 @@ public class RedirectController {
 
     /**
      * Error redirect string.
+     * This is thrown if an error occurs while trying to process the urlKey specified by the user
      *
      * @return the string
      */

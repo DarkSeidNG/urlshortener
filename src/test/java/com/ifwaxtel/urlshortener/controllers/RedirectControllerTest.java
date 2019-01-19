@@ -41,15 +41,19 @@ public class RedirectControllerTest {
     @Test
     public void testStatisticsRedirectEndpoint() throws Exception {
 
+        // Clear all saved urlData
         urlDataRepository.deleteAll();
 
+        // Create a new Url data object
         UrlData urlData = new UrlData();
         urlData.setDateCreated(new Date().getTime());
         urlData.setOriginalUrl("http://github.com/darkseidng");
         urlData.setShortenedUrlKey(UrlHelper.generateRandomUrlKey(5));
 
+        // Save the newly created url data object
         urlDataRepository.save(urlData);
 
+        // Test if the redirection endpoint is redirecting to the correct url
         mvc.perform(get("/" + urlData.getShortenedUrlKey())).andExpect(redirectedUrl("http://github.com/darkseidng")).andExpect(status().isFound());
     }
 }

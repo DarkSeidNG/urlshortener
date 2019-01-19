@@ -41,8 +41,11 @@ public class MainController {
     Map<String, String> shortenUrl(@RequestParam String url)
     {
 
+        // Save the url
         UrlData urlData = saveUrl(url);
 
+
+        // Set the data to be returned as a hashmap, this will be converted to json automatically
         HashMap<String, String> returnedData = new HashMap<>();
         returnedData.put("originalUrl", urlData.getOriginalUrl());
         returnedData.put("shortenedUrl", UrlHelper.getBaseUrl() + "/" + urlData.getShortenedUrlKey());
@@ -53,6 +56,8 @@ public class MainController {
 
     /**
      * Gather statistics statistics data.
+     * This returns some data from the persistence layer like the
+     * number of urls saved and the list of urls saved
      *
      * @return the statistics data
      */
@@ -60,6 +65,7 @@ public class MainController {
     public @ResponseBody
     StatisticsData gatherStatistics()
     {
+        // Populate the SatisticsData object with data from the persistence layer
         StatisticsData statisticsData = new StatisticsData();
         statisticsData.setTotal_urls_saved(String.valueOf(urlDataRepository.count()));
         statisticsData.setUrls(urlDataRepository.findAll());
