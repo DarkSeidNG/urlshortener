@@ -29,6 +29,7 @@ public class UrlData {
      *
      * @return the id
      */
+    @SuppressWarnings("unused")
     public Long getId() {
         return id;
     }
@@ -38,6 +39,7 @@ public class UrlData {
      *
      * @param id the id
      */
+    @SuppressWarnings("unused")
     public void setId(Long id) {
         this.id = id;
     }
@@ -83,6 +85,7 @@ public class UrlData {
      *
      * @return the date created
      */
+    @SuppressWarnings("unused")
     public Long getDateCreated() {
         return dateCreated;
     }

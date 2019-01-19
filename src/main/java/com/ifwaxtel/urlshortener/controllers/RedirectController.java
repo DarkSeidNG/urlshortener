@@ -55,6 +55,7 @@ public class RedirectController {
      *
      * @return the string
      */
+    @SuppressWarnings("SameReturnValue")
     @GetMapping("/urlerror")
     public @ResponseBody
     String errorRedirect()

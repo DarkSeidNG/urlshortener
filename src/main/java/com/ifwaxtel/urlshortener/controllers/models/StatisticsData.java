@@ -7,18 +7,10 @@ import java.util.List;
 /**
  * The type Statistics data.
  */
+@SuppressWarnings({"FieldCanBeLocal", "unused"})
 public class StatisticsData {
     private String total_urls_saved;
     private List<UrlData> urls;
-
-    /**
-     * Gets total urls saved.
-     *
-     * @return the total urls saved
-     */
-    public String getTotal_urls_saved() {
-        return total_urls_saved;
-    }
 
     /**
      * Sets total urls saved.
@@ -30,20 +22,29 @@ public class StatisticsData {
     }
 
     /**
-     * Gets urls.
-     *
-     * @return the urls
-     */
-    public List<UrlData> getUrls() {
-        return urls;
-    }
-
-    /**
      * Sets urls.
      *
      * @param urls the urls
      */
     public void setUrls(List<UrlData> urls) {
         this.urls = urls;
+    }
+
+    /**
+     * Gets total urls saved.
+     *
+     * @return the total urls saved
+     */
+    public String getTotal_urls_saved() {
+        return total_urls_saved;
+    }
+
+    /**
+     * Gets urls.
+     *
+     * @return the urls
+     */
+    public List<UrlData> getUrls() {
+        return urls;
     }
 }
