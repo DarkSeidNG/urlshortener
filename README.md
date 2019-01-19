@@ -1,5 +1,5 @@
 # urlshortener
-**urlshortener** is a simple Spring Boot app that receives a url via an api enpoint and 
+**urlshortener** is a simple Spring Boot app that receives a url via an api endpoint and 
 returns a shortened url that redirects to the original url
 
 To use this project simply clone the repository with command line - 
