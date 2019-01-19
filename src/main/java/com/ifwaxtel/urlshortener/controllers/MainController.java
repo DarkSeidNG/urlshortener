@@ -50,6 +50,21 @@ public class MainController {
 
     }
 
+    @GetMapping(path="/gatherStatistics")
+    public @ResponseBody
+    Map<String, String> gatherStatistics()
+    {
+        return null;
+
+    }
+
+    /**
+     * Saves UrlData with the original url and shortenedUrl key to the Spring Jpa persistence layer
+     * The shortenedUrlKey is a random 5 character alphanumeric string
+     *
+     * @param url - the original url
+     * @return - returns a UrlData object
+     */
     private UrlData saveUrl(String url){
         UrlData urlData = new UrlData();
         urlData.setOriginalUrl(url);
@@ -60,5 +75,6 @@ public class MainController {
 
         return urlData;
     }
+
 
 }
