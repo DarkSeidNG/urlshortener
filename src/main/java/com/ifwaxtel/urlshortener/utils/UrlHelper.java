@@ -54,7 +54,7 @@ public class UrlHelper {
 
         HttpServletRequest currentRequest = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
 
-        baseUrl = "http://" + currentRequest.getLocalName();
+        baseUrl = "http://" + currentRequest.getLocalAddr();
 
         if (currentRequest.getLocalPort() != 80){
             baseUrl += ":" + currentRequest.getLocalPort();
