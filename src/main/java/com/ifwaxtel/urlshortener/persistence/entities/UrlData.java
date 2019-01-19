@@ -98,7 +98,7 @@ public class UrlData {
 
     @Override
     public String toString() {
-        return "UrlData{" +
+        return "{" +
                 "id=" + id +
                 ", originalUrl='" + originalUrl + '\'' +
                 ", shortenedUrlKey='" + shortenedUrlKey + '\'' +

@@ -1,5 +1,6 @@
 package com.ifwaxtel.urlshortener.controllers;
 
+import com.ifwaxtel.urlshortener.controllers.models.StatisticsData;
 import com.ifwaxtel.urlshortener.persistence.UrlDataRepository;
 import com.ifwaxtel.urlshortener.persistence.entities.UrlData;
 import com.ifwaxtel.urlshortener.utils.UrlHelper;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -50,11 +52,20 @@ public class MainController {
 
     }
 
+    /**
+     * Gather statistics statistics data.
+     *
+     * @return the statistics data
+     */
     @GetMapping(path="/gatherStatistics")
     public @ResponseBody
-    Map<String, String> gatherStatistics()
+    StatisticsData gatherStatistics()
     {
-        return null;
+        StatisticsData statisticsData = new StatisticsData();
+        statisticsData.setTotal_urls_saved(String.valueOf(urlDataRepository.count()));
+        statisticsData.setUrls(urlDataRepository.findAll());
+
+        return statisticsData;
 
     }
 
