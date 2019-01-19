@@ -4,6 +4,7 @@ import com.ifwaxtel.urlshortener.controllers.models.StatisticsData;
 import com.ifwaxtel.urlshortener.persistence.UrlDataRepository;
 import com.ifwaxtel.urlshortener.persistence.entities.UrlData;
 import com.ifwaxtel.urlshortener.utils.UrlHelper;
+import org.apache.commons.validator.UrlValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,16 +42,27 @@ public class MainController {
     Map<String, String> shortenUrl(@RequestParam String url)
     {
 
-        // Save the url
-        UrlData urlData = saveUrl(url);
-
-
-        // Set the data to be returned as a hashmap, this will be converted to json automatically
         HashMap<String, String> returnedData = new HashMap<>();
-        returnedData.put("originalUrl", urlData.getOriginalUrl());
-        returnedData.put("shortenedUrl", UrlHelper.getBaseUrl() + "/" + urlData.getShortenedUrlKey());
+        @SuppressWarnings("deprecation") UrlValidator urlValidator = new UrlValidator();
 
-        return returnedData;
+        // check to see if the url is valid
+        if (!url.trim().equals("") && urlValidator.isValid(url)) {
+            // Save the url
+            UrlData urlData = saveUrl(url);
+
+            // Set the data to be returned as a hashmap, this will be converted to json automatically
+            returnedData.put("status", "success");
+            returnedData.put("originalUrl", urlData.getOriginalUrl());
+            returnedData.put("shortenedUrl", UrlHelper.getBaseUrl() + "/" + urlData.getShortenedUrlKey());
+
+            return returnedData;
+        }
+        else {
+            returnedData.put("status", "error");
+            returnedData.put("message", "invalid url entered");
+
+            return  returnedData;
+        }
 
     }
 
